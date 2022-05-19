@@ -1,38 +1,130 @@
 .App {
+  display: flex;
+  align-items: center;
+  background-color: #FF0266;
+  height: 100vh;
+}
+
+.svgfile {
+  border-radius: 30px;
+  border: 5.56757px solid #FFFFFF;
+  margin: 22px;
+  width: 89.08px;
+  height: 89.08px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.PlayX {
+  color: white;
+  width: 100%;
+  height: 100%;
+  background: #0336FF;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.madalGame {
+  height: auto;
+  background-color: white;
+  width: 300px;
+  border: none !important;
+  padding: 2rem 4rem;
+  margin: 15% auto;
+}
+
+.madalGame h1 {
+  font-family: cursive;
+  color: #FF0266;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.madalGame h2 {
+  font-family: cursive;
+  text-align: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.madalGame button{
+  width: 120px;
+  text-align: center !important;
+  border: none;
   color: white;
+  background-color: #FF0266;
+  height: 50px;
+  margin: 0 auto !important;
+  cursor: pointer;
 }
-
-.App-link {
-  color: #61dafb;
+.Restart{
+  display: flex;
+  justify-content: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media(min-width:0) and (max-width:750.9px){
+  .App {
+    display: flex;
+    align-items: center;
+    background-color: #FF0266;
+    height: 100vh;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .svgfile {
+    border-radius: 23px;
+    border: 5.56757px solid #FFFFFF;
+    margin: 15px;
+    width: 60.08px;
+    height: 65.08px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .PlayX {
+    color: white;
+    width: 100%;
+    height: 100%;
+    background: #0336FF;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    justify-content: center;
+  }
+  
+  .madalGame {
+    height: auto;
+    background-color: white;
+    width: auto;
+    border: none !important;
+    padding: 2rem 4rem;
+    margin: 15% auto;
+  }
+  
+  .madalGame h1 {
+    font-family: cursive;
+    color: #FF0266;
+    text-align: center;
+  }
+  
+  .madalGame h2 {
+    font-family: cursive;
+    text-align: center;
+  }
+  .madalGame button{
+    width: 120px;
+    text-align: center !important;
+    border: none;
+    color: white;
+    background-color: #FF0266;
+    height: 50px;
+    margin: 0 auto !important;
+    cursor: pointer;
+  }
+  .Restart{
+    display: flex;
+    justify-content: center;
   }
 }
