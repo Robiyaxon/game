@@ -8,18 +8,8 @@ const initialBoard = [
 ];
 
 const dim = 3;
-// row-wise
-// col-wise
-// diagonal1
-// diagonal2
 export const checkWinner = (table) => {
   let colResult;
-  // row check
-  // x x o
-  // x x x => xxx
-  // o x x
-  // o o x
-  // o o o => ooo
   const checkRow = (testTable) => {
     let testRowResult;
     for (let row of testTable) {
@@ -38,16 +28,8 @@ export const checkWinner = (table) => {
 
     return testRowResult;
   };
-
-  // check row
   const rowResult = checkRow(table);
-  // col check
-  // transpose table --> cols are getting rows of transposed table
-  // so we can do the same test
   let transposedTable = [
-    // [],
-    // [],
-    // []
   ];
   if (!rowResult) {
     for (let row of table) {
@@ -63,30 +45,6 @@ export const checkWinner = (table) => {
 
     colResult = checkRow(transposedTable);
   }
-
-  // check diagonals
-  // x o o
-  // o x o
-  // o o x
-  // index 00, 11, 22 --> can be calculated with a counter
-  // or 02, 11, 20
-  /*
-  
-  // 4 by 4
-  // o o o x
-  // o o x o
-  // o x o o
-  // x o o o
-  
-  // 03, 12, 21, 30
-  // row++
-  // col = max--
-
-  // hard-coded
-  const center = table[1][1];
-  const dia1 = table[0][0] + center + table[2][2];
-  const dia2 = table[0][2] + table[1][1] + table[2][0];*/
-
   const dia1 = Array.from(new Array(dim))
     .map((_, i) => table[i][i])
     .join("");
@@ -105,14 +63,11 @@ export const checkWinner = (table) => {
 };
 
 const GAME_MODES = {
-  human: false, // human vs. human
+  human: false, 
   ki: {
-    // human vs. ki --> o for KI & human starts
     playerLetter: "o"
   },
-  training: false // like human vs human but agent1 vs agent2
-  // x = human
-  // o = ki
+  training: false 
 };
 
 export default () => {
@@ -122,33 +77,22 @@ export default () => {
   const [round, setRound] = useState(0);
   const [activePlayer, setPlayer] = useState("x");
   const [showGameover, setShowGameover] = useState(false);
-
-  // gamemode not used yet, but we could switch between
-  // human, ki basic & ki minimax (later)
   const [gameMode, setGameMode] = useState(GAME_MODES.human ? "human" : "ki");
 
   const handleCellClick = (row, col) => {
     if (gameover || table[row][col] !== null) {
-      // already selected or game-over --> skip click
       return;
     }
 
     if (gameMode === "ki" && activePlayer === GAME_MODES.ki.playerLetter) {
-      return; // ignore user clicks - if KI's turn
+      return; 
     }
 
     updateTable(row, col);
   };
 
   const getCell = (pos) => {
-    // 1 2 3 4 5 6 7 8 9
-    // row 0 row 1 row 2
-    // 0 1 2 0 1 2 0 1 2
-    // e.g. (1 - 1) / 3 = 0
-    //      (2 - 1) / 3 = 0
-    //      (3 - 1) / 3 = 0
-    //      (4 - 1) / 3 = 1
-    const row = parseInt((pos - 1) / 3, 10); // 4 --> row = 1
+    const row = parseInt((pos - 1) / 3, 10); 
     return {
       row,
       col: pos - 1 - row * 3
@@ -156,8 +100,6 @@ export default () => {
   };
 
   const isCellEmpty = (row, col) => table[row][col] === null;
-
-  // simple KI - picks the first empty spot
   const firstEmptyCell = () => {
     let cell;
     for (let i = 0; i < 9; i++) {
@@ -189,7 +131,7 @@ export default () => {
         return draft;
       });
 
-      setPlayer((a) => (a === "x" ? "o" : "x")); // toggle player
+      setPlayer((a) => (a === "x" ? "o" : "x")); 
       setRound((r) => r + 1);
     },
     [activePlayer]
@@ -205,7 +147,6 @@ export default () => {
         const isKITurn = activePlayer === GAME_MODES.ki.playerLetter;
 
         if (isKITurn) {
-          // call KI to do it's move
           const kiClick = bestSpot();
           updateTable(kiClick.row, kiClick.col);
         }
@@ -220,8 +161,6 @@ export default () => {
   useEffect(() => {
     if (gameover) {
       if (winner === null) {
-        // no winner = draw game
-        // gameover && winner == null --> draw display
         setShowGameover(true);
         return;
       }
@@ -236,20 +175,20 @@ export default () => {
   };
 
   return [
-    table, // 2d array of the game
+    table, 
     {
       gameStatus: {
-        activePlayer, // x or o?
+        activePlayer,
         currentPlayerText,
-        gameMode, // ki or human mode
+        gameMode, 
         gameover,
-        round, // counter of round 0,1...
-        showGameover, // showing gameover modal
-        winner // x or o is the winner, undefined = draw
+        round, 
+        showGameover, 
+        winner 
       },
       actions: {
-        handleCellClick, // update table
-        handleRestart, // game restart
+        handleCellClick, 
+        handleRestart, 
         hideGameoverModal,
         setGameMode
       }

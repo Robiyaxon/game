@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon } from "react-icons-kit";
-import { x } from "react-icons-kit/oct/x";
 const Board = styled.table`
   border-collapse: collapse;
   margin: 0 auto;
